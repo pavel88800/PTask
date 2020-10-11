@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using ExchangeRatesConsoleApp.DB.Models;
 
 namespace ExchangeRatesConsoleApp.Workers
@@ -21,7 +22,8 @@ namespace ExchangeRatesConsoleApp.Workers
                     $"https://www.cnb.cz/en/financial_markets/foreign_exchange_market/exchange_rate_fixing/year.txt?year={year}");
             var listCurrency = new List<ExchangeRate>();
 
-            ReadExchangeRates(clientRead, ref listCurrency);
+            Task.Run(() => ReadExchangeRates(clientRead, ref listCurrency));
+            
 
             return listCurrency;
         }
@@ -76,9 +78,9 @@ namespace ExchangeRatesConsoleApp.Workers
                 WriteInListCurrency(i, cells, countCurrency, nameCurrency, ref listCurrency);
             }
 
-            foreach (var a in listCurrency)
+            /*foreach (var a in listCurrency)
                 Console.WriteLine(
-                    $"Name:{a.CurrencyName}  Count:{a.CurrencyCount}  CurrencyValue:{a.CurrencyValue}  Date:{a.Date}");
+                    $"Name:{a.CurrencyName}  Count:{a.CurrencyCount}  CurrencyValue:{a.CurrencyValue}  Date:{a.Date}");*/
         }
 
         /// <summary>

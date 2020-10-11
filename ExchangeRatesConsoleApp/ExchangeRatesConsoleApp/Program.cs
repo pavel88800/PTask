@@ -12,6 +12,8 @@ namespace ExchangeRatesConsoleApp
 
             var year = GetYear();
             var list = currencyWorker.Main(year);
+
+            SaveDataInDbWorker.Save(list);
         }
 
         private static int GetYear()
@@ -24,9 +26,9 @@ namespace ExchangeRatesConsoleApp
                 Console.WriteLine("-------------------------------------");
                 return year;
             }
-            catch 
+            catch
             {
-                Console.WriteLine("Введено неверное значения для года. Выборку будет производиться по текущему году.");
+                Console.WriteLine("Введено неверное значение для года. Выборку будет производиться по текущему году.");
                 Thread.Sleep(2000);
                 return year;
             }

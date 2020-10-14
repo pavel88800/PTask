@@ -16,5 +16,20 @@ namespace ExchangeRatesWebApp.BL.Interfaces
         ///     <see cref="IEnumerable<ExchangeRate>"/>
         /// </returns>
         Task<IEnumerable<ExchangeRate>> GetExchangeRate(DateTime date, string currencyName);
+
+        /// <summary>
+        ///     Получить валюты
+        /// </summary>
+        /// <returns></returns>
+        Task<IEnumerable<string>> GetCurrency();
+
+        /// <summary>
+        ///     Получить записи за год.
+        /// </summary>
+        /// <param name="date">Год за который выводить</param>
+        /// <returns>
+        ///     <see cref="IEnumerable<ExchangeRate>"/>
+        /// </returns>
+        Task<IEnumerable<ExchangeRate>> GetExchangeRateFromYear(int date);
     }
 }

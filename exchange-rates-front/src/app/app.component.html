@@ -1,0 +1,31 @@
+
+
+<div class="p-field p-col-12 p-md-4">
+  <label for="multiplemonths">Multiple Months</label>
+  <p-calendar [(ngModel)]="date11" [numberOfMonths]="3" inputId="multiplemonths" dateFormat="mm.dd.yy" ></p-calendar>
+  <p-dropdown [options]="cities" [(ngModel)]="selectedCity1" placeholder="Select a City" optionLabel="name" [showClear]="true"></p-dropdown>
+  <div class="form-group">
+    <button class="btn btn-default" (click)="getData(date11, selectedCity1)">
+        Отфильтровать
+    </button>
+</div>
+</div>
+
+<p-table [value]="curencies">  
+    <ng-template pTemplate="header">  
+        <tr>  
+            <th>Дата</th>
+            <th>Наименование валюты</th>  
+            <th>Кол-во валюты</th>            
+            <th>Курс к кроне</th>       
+        </tr>  
+    </ng-template>
+    <ng-template pTemplate="body" let-curency>
+        <tr>
+            <td>{{curency.date}}</td>
+            <td>{{curency.currencyName}}</td>
+            <td>{{curency.currencyCount}}</td>
+            <td>{{curency.currencyValue}}</td>
+        </tr>
+    </ng-template>
+  </p-table>

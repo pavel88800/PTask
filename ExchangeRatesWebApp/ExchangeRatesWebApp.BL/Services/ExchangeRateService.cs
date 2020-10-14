@@ -37,5 +37,33 @@ namespace ExchangeRatesWebApp.BL.Services
                 return new List<ExchangeRate>();
             }
         }
+
+        /// <inheritdoc cref="IExchangeRate"/>
+        public async Task<IEnumerable<string>> GetCurrency()
+        {
+            try
+            {
+                var result = await _context.ExchangeRates.Select(x => x.CurrencyName).Distinct().OrderBy(x=>x).ToListAsync();
+                return result;
+            }
+            catch (Exception e)
+            {
+                return new List<string>();
+            }
+        }
+
+        /// <inheritdoc cref="IExchangeRate"/>
+        public async Task<IEnumerable<ExchangeRate>> GetExchangeRateFromYear(int date)
+        {
+            try
+            {
+                var result =  await _context.ExchangeRates.Where(x => x.Date.Year == date).Take(500).ToListAsync();
+                return result;
+            }
+            catch (Exception e)
+            {
+                return new List<ExchangeRate>();
+            }
+        }
     }
 }

@@ -25,5 +25,22 @@ namespace ExchangeRatesWebApp.Controllers.Api
             var result = await _exchangeRate.GetExchangeRate(date, currency);
             return result;
         }
+
+        [HttpGet]
+        [Route("/currency")]
+        public async Task<IEnumerable<string>> GetCurrency()
+        {
+            var result = await _exchangeRate.GetCurrency();
+            return result;
+        }
+
+        [HttpGet]
+        [Route("/list-in-year")]
+        public async Task<IEnumerable<ExchangeRate>> GetExchangeRateFromYear(int date)
+        {
+            var result = await _exchangeRate.GetExchangeRateFromYear(date);
+            return result;
+        }
+
     }
 }

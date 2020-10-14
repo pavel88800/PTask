@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using ExchangeRatesWebApp.BL.Interfaces;
 using ExchangeRatesWebApp.DB;
@@ -13,14 +12,30 @@ namespace ExchangeRatesWebApp.BL.Services
     public class ExchangeRateService : IExchangeRate
     {
         private readonly ExchangeRatesWebAppContext _context;
+
         public ExchangeRateService(ExchangeRatesWebAppContext context)
         {
             _context = context;
         }
-        public async Task<IEnumerable<ExchangeRate>> GetExchangeRate()
+
+        /// <inheritdoc cref="IExchangeRate"/>
+        public async Task<IEnumerable<ExchangeRate>> GetExchangeRate(DateTime date, string currencyName)
         {
-            var res = await _context.ExchangeRates.ToListAsync();
-            return res;
+            try
+            {
+                var res = _context.ExchangeRates;
+
+                var exchangeRates = currencyName == null
+                    ? res.Where(x => x.Date == date)
+                    : res.Where(x => x.Date == date && x.CurrencyName == currencyName);
+
+                var result = await exchangeRates.ToListAsync();
+                return result;
+            }
+            catch (Exception e)
+            {
+                return new List<ExchangeRate>();
+            }
         }
     }
 }

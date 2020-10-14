@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ExchangeRatesWebApp.BL.Interfaces;
 using ExchangeRatesWebApp.Controllers.Base;
@@ -18,9 +20,9 @@ namespace ExchangeRatesWebApp.Controllers.Api
         
 
         [HttpGet]
-        public async Task<IEnumerable<ExchangeRate>> GetExchangeRates()
+        public async Task<IEnumerable<ExchangeRate>> GetExchangeRates(DateTime date, string currency)
         {
-            var result = await _exchangeRate.GetExchangeRate();
+            var result = await _exchangeRate.GetExchangeRate(date, currency);
             return result;
         }
     }

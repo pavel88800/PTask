@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using ExchangeRatesWebApp.BL.DTO;
 using ExchangeRatesWebApp.BL.Interfaces;
 using ExchangeRatesWebApp.Controllers.Base;
-using ExchangeRatesWebApp.DB.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExchangeRatesWebApp.Controllers.Api
@@ -17,10 +16,9 @@ namespace ExchangeRatesWebApp.Controllers.Api
         {
             _exchangeRate = exchangeRate;
         }
-        
 
         [HttpGet]
-        public async Task<IEnumerable<ExchangeRate>> GetExchangeRates(DateTime date, string currency)
+        public async Task<IEnumerable<ExchangeRateDto>> GetExchangeRates(DateTime date, string currency)
         {
             var result = await _exchangeRate.GetExchangeRate(date, currency);
             return result;
@@ -36,11 +34,10 @@ namespace ExchangeRatesWebApp.Controllers.Api
 
         [HttpGet]
         [Route("/list-in-year")]
-        public async Task<IEnumerable<ExchangeRate>> GetExchangeRateFromYear(int date)
+        public async Task<IEnumerable<ExchangeRateDto>> GetExchangeRateFromYear(int date)
         {
             var result = await _exchangeRate.GetExchangeRateFromYear(date);
             return result;
         }
-
     }
 }

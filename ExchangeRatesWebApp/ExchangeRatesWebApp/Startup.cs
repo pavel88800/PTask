@@ -20,7 +20,6 @@ namespace ExchangeRatesWebApp
 
         public IConfiguration Configuration { get; }
 
-
         public void ConfigureServices(IServiceCollection services)
         {
             var connection = Configuration.GetConnectionString("DefaultConnection");
@@ -38,7 +37,6 @@ namespace ExchangeRatesWebApp
 
             ImplementDependency(services);
         }
-
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

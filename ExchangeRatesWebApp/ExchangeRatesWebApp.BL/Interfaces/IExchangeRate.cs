@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ExchangeRatesWebApp.DB.Models;
+using ExchangeRatesWebApp.BL.DTO;
 
 namespace ExchangeRatesWebApp.BL.Interfaces
 {
@@ -13,9 +13,9 @@ namespace ExchangeRatesWebApp.BL.Interfaces
         /// <param name="date">Дата</param>
         /// <param name="currencyName">Наименование валюты</param>
         /// <returns>
-        ///     <see cref="IEnumerable<ExchangeRate>"/>
+        ///     <see cref="ExchangeRateDto"/>
         /// </returns>
-        Task<IEnumerable<ExchangeRate>> GetExchangeRate(DateTime date, string currencyName);
+        Task<IEnumerable<ExchangeRateDto>> GetExchangeRate(DateTime date, string currencyName);
 
         /// <summary>
         ///     Получить валюты
@@ -28,8 +28,8 @@ namespace ExchangeRatesWebApp.BL.Interfaces
         /// </summary>
         /// <param name="date">Год за который выводить</param>
         /// <returns>
-        ///     <see cref="IEnumerable<ExchangeRate>"/>
+        ///     <see cref="ExchangeRateDto"/>
         /// </returns>
-        Task<IEnumerable<ExchangeRate>> GetExchangeRateFromYear(int date);
+        Task<IEnumerable<ExchangeRateDto>> GetExchangeRateFromYear(int date);
     }
 }

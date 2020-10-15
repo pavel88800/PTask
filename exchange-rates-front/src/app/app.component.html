@@ -1,24 +1,22 @@
 
-
-<div class="p-field p-col-12 p-md-4">
-  <label for="multiplemonths">Multiple Months</label>
-  <p-calendar [(ngModel)]="date11" [numberOfMonths]="3" inputId="multiplemonths" dateFormat="mm.dd.yy" ></p-calendar>
-  <p-dropdown [options]="cities" [(ngModel)]="selectedCity1" placeholder="Select a City" optionLabel="name" [showClear]="true"></p-dropdown>
-  <div class="form-group">
-    <button class="btn btn-default" (click)="getData(date11, selectedCity1)">
-        Отфильтровать
-    </button>
+<div class="p-field p-col-12 p-md-4 parrent-block">    
+    <p-calendar [(ngModel)]="date" [numberOfMonths]="3" placeholder="Выберите дату" inputId="multiplemonths" dateFormat="dd.mm.yy"
+        [disabledDays]="[0,6]"></p-calendar>
+    <p-dropdown [options]="cities" [(ngModel)]="selectedCity1" placeholder="Выберите валюту" optionLabel="name"
+        [showClear]="true"></p-dropdown>
+        <button pButton pRipple type="button" label="Получить данные" style="width:20rem" (click)="getData(date, selectedCity1)"></button>    
+        
 </div>
-</div>
-
-<p-table [value]="curencies">  
-    <ng-template pTemplate="header">  
-        <tr>  
+<section class="section-table">
+    <div class="parentblock-table">
+<p-table [value]="curencies">
+    <ng-template pTemplate="header">
+        <tr>
             <th>Дата</th>
-            <th>Наименование валюты</th>  
-            <th>Кол-во валюты</th>            
-            <th>Курс к кроне</th>       
-        </tr>  
+            <th>Наименование валюты</th>
+            <th>Кол-во валюты</th>
+            <th>Курс к кроне</th>
+        </tr>
     </ng-template>
     <ng-template pTemplate="body" let-curency>
         <tr>
@@ -28,4 +26,6 @@
             <td>{{curency.currencyValue}}</td>
         </tr>
     </ng-template>
-  </p-table>
+</p-table>
+</div>
+</section>
